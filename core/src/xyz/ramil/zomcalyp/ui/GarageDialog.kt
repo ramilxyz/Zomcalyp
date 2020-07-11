@@ -23,42 +23,42 @@ class GarageDialog internal constructor(var zgame: ZGame) : Dialog("", zgame.ski
 
 
         val contentTable = contentTable
-        contentTable.debug = true
+       // contentTable.debug = true
 
 
         val titleTable = Table()
-
-        val label = Label("Name", zgame.skin)
+        val label = Label("Super GT Turbo", zgame.skin)
         label.setAlignment(Align.center)
-        titleTable.add(label)
-
+        titleTable.add(label).pad(10f)
         contentTable.add(titleTable)
         contentTable.row()
 
         val selectTable = Table()
         buttonleft = TextButton("<<", zgame.skin)
         selectTable.add(buttonleft).pad(20f)
-
-
         val image = Image(zgame.assetManager.get("cars/y1.png", Texture::class.java))
         selectTable.add(image).pad(20f)
-
         buttonRight = TextButton(">>", zgame.skin)
         selectTable.add(buttonRight).pad(20f)
-
         contentTable.add(selectTable)
+        contentTable.row()
+
+        val scrolInfo = Table()
+        val label2 = Label("1/20", zgame.skin)
+        label2.setAlignment(Align.center)
+        scrolInfo.add(label2)
+        contentTable.add(scrolInfo)
         contentTable.row()
 
         val controlTable = Table()
         buttonCancel = TextButton("Cancel", zgame.skin)
         controlTable.add(buttonCancel).padRight(20f)
-
         buttonSelect = TextButton("Select", zgame.skin)
         controlTable.add(buttonSelect).padRight(20f).padLeft(20f)
-
         buttonTuning = TextButton("Tuning", zgame.skin)
         controlTable.add(buttonTuning).padLeft(20f)
         contentTable.add(controlTable)
+
         buttonleft.setColor(buttonleft.color.r, buttonleft.color.g, buttonleft.color.b, 0.7f)
         buttonRight.setColor(buttonRight.color.r, buttonRight.color.g, buttonRight.color.b, 0.7f)
         buttonTuning.setColor(buttonTuning.color.r, buttonTuning.color.g, buttonTuning.color.b, 0.7f)
