@@ -144,6 +144,8 @@ class MenuTable internal constructor(private val zgame: ZGame, private val playS
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
                 super.touchUp(event, x, y, pointer, button)
                 garageButton.setColor(garageButton.color.r, garageButton.color.g, garageButton.color.b, 1f)
+              GarageDialog(zgame).show(zgame.stage)
+
             }
 
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
