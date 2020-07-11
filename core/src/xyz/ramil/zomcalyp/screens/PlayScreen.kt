@@ -277,12 +277,12 @@ class PlayScreen internal constructor(private val zgame: ZGame) : Screen {
         zombie = Image(zombieTexture)
         zombie.setSize(40f, 40f)
         zombie.name = "zombie_ui"
-        zombie.setColor(zombie.color.r, zombie.color.g, zombie.color.b, 1f)
         zombie.setPosition(10f, 430f)
+        zombie.setColor(zombie.color.r, zombie.color.g, zombie.color.b, 0.7f)
         zgame.stage?.addActor(zombie)
 
         label1 = Label("", zgame.skin)
-        label1.setPosition(60f, 435f)
+        label1.setPosition(60f, 450f)
         zgame.stage?.addActor(label1)
 
         mMapLoader = MapLoader(mWorld, zgame)
