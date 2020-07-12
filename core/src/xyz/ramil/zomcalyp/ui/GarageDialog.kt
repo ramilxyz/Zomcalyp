@@ -1,5 +1,6 @@
 package xyz.ramil.zomcalyp.ui
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.InputEvent
@@ -17,34 +18,64 @@ class GarageDialog internal constructor(var zgame: ZGame) : Dialog("", zgame.ski
     val buttonCancel: Actor
     val buttonTuning: Actor
     val buttonSelect:Actor
+    val carList: ArrayList<Image> = arrayListOf()
+    val selectTable = Table()
+    var position = 0
+    val label2: Label
+    val label:Label
+
+
 
     init {
 
 
 
         val contentTable = contentTable
-       // contentTable.debug = true
+//        contentTable.debug = true
+        val image0 = Image(zgame.assetManager.get("cars/y0.png", Texture::class.java))
+        val image1 = Image(zgame.assetManager.get("cars/y1.png", Texture::class.java))
+        val image2 = Image(zgame.assetManager.get("cars/b0.png", Texture::class.java))
+        val image3 = Image(zgame.assetManager.get("cars/b1.png", Texture::class.java))
+        val image4 = Image(zgame.assetManager.get("cars/r0.png", Texture::class.java))
+
+        carList.add(image0)
+        carList.add(image1)
+        carList.add(image2)
+        carList.add(image3)
+        carList.add(image4)
+
+
 
 
         val titleTable = Table()
-        val label = Label("Super GT Turbo", zgame.skin)
+        label = Label("Super GT Turbo", zgame.skin)
         label.setAlignment(Align.center)
         titleTable.add(label).pad(10f)
         contentTable.add(titleTable)
         contentTable.row()
 
-        val selectTable = Table()
+        val grandSelectTable = Table()
+//        grandSelectTable.debug = true
+
+        val tableLeft = Table()
         buttonleft = TextButton("<<", zgame.skin)
-        selectTable.add(buttonleft).pad(20f)
-        val image = Image(zgame.assetManager.get("cars/y1.png", Texture::class.java))
-        selectTable.add(image).pad(20f)
+        tableLeft.add(buttonleft)
+        grandSelectTable.add(tableLeft).pad(20f)
+
+        selectTable.add(carList.get(position))
+        grandSelectTable.add(selectTable)
+
+        val tableRight = Table()
         buttonRight = TextButton(">>", zgame.skin)
-        selectTable.add(buttonRight).pad(20f)
-        contentTable.add(selectTable)
+        tableRight.add(buttonRight)
+        grandSelectTable.add(tableRight).pad(20f)
+
+        contentTable.add(grandSelectTable)
+
         contentTable.row()
 
         val scrolInfo = Table()
-        val label2 = Label("1/20", zgame.skin)
+        label2 = Label(""+(position+1)+"/"+(carList.size), zgame.skin)
         label2.setAlignment(Align.center)
         scrolInfo.add(label2)
         contentTable.add(scrolInfo)
@@ -72,6 +103,15 @@ class GarageDialog internal constructor(var zgame: ZGame) : Dialog("", zgame.ski
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
                 super.touchUp(event, x, y, pointer, button)
                 buttonleft.setColor(buttonleft.color.r, buttonleft.color.g, buttonleft.color.b, 0.7f)
+                if(position > 0) {
+                    position--
+                    label2.setText(""+(position+1)+"/"+(carList.size))
+                    selectTable.children[0] = carList[position]
+                } else {
+                    position = carList.size-1;
+                    label2.setText(""+(position+1)+"/"+(carList.size))
+                    selectTable.children[0] = carList[position]
+                }
             }
 
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
@@ -84,6 +124,15 @@ class GarageDialog internal constructor(var zgame: ZGame) : Dialog("", zgame.ski
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
                 super.touchUp(event, x, y, pointer, button)
                 buttonRight.setColor(buttonRight.color.r, buttonRight.color.g, buttonRight.color.b, 0.7f)
+                if(position < carList.size-1) {
+                    position++
+                    label2.setText(""+(position+1)+"/"+(carList.size))
+                    selectTable.children[0] = carList[position]
+                } else {
+                    position = 0;
+                    label2.setText(""+(position+1)+"/"+(carList.size))
+                    selectTable.children[0] = carList[position]
+                }
             }
 
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
