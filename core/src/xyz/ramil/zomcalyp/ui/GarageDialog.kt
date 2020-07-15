@@ -41,7 +41,7 @@ class GarageDialog internal constructor(var zgame: ZGame) : Dialog("", zgame.ski
 
 
         val contentTable = contentTable
-        contentTable.debug = true
+    //    contentTable.debug = true
         val image0 = Image(zgame.assetManager.get("cars/y0.png", Texture::class.java))
         val image1 = Image(zgame.assetManager.get("cars/y1.png", Texture::class.java))
         val image2 = Image(zgame.assetManager.get("cars/b0.png", Texture::class.java))
@@ -81,7 +81,7 @@ class GarageDialog internal constructor(var zgame: ZGame) : Dialog("", zgame.ski
         contentTable.row()
 
         val grandSelectTable = Table()
-        grandSelectTable.debug = true
+     //   grandSelectTable.debug = true
 
         val tableLeft = Table()
         buttonleft = TextButton("<<", zgame.skin)
@@ -133,8 +133,7 @@ class GarageDialog internal constructor(var zgame: ZGame) : Dialog("", zgame.ski
             override fun touchDragged(event: InputEvent?, x: Float, y: Float, pointer: Int) {
                 actor.setOrigin(actor.width/2, actor.height/2)
                 val touchDegree = Vector2(x, y).sub(Vector2(actor.getOriginX(), actor.getOriginY())).angle()
-                actor.rotateBy (touchDegree)
-                actor.debug = true
+                actor.rotateBy (touchDegree - Vector2(x, y).angle())
                 Gdx.app.log("X"+actor.originX, "Y"+actor.originY)
             }
         })
