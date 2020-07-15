@@ -17,7 +17,16 @@ class UserControl internal constructor(var zgame: ZGame, val playScreen: PlayScr
     val brake: Actor
     val right: Actor
     val left: Actor
-    val control: ArrayList<Actor>
+    companion object {
+        val control: ArrayList<Actor> = arrayListOf()
+
+    }
+
+
+
+
+
+
 
     init {
 
@@ -31,7 +40,6 @@ class UserControl internal constructor(var zgame: ZGame, val playScreen: PlayScr
         right = Image(rightTexture)
         left = Image(leftTexture)
 
-        control = ArrayList()
         control.add(gas)
         control.add(brake)
         control.add(right)
@@ -62,7 +70,7 @@ class UserControl internal constructor(var zgame: ZGame, val playScreen: PlayScr
         zgame.stage?.addActor(left)
         zgame.stage?.addActor(right)
 
-        mPlayer = CarObject(Car(35.0f, 0.8f, 80f, playScreen.mMapLoader, CarObject.DRIVE_4WD, playScreen.mWorld, control, zgame, playScreen.stage))
+        mPlayer = CarObject(Car(texture = zgame.assetManager.get("cars/y0.png", Texture::class.java), mRegularMaxSpeed = 35.0f, mDrift = 0.8f, mAcceleration = 80f,mapLoader =  playScreen.mMapLoader, wheelDrive = CarObject.DRIVE_4WD, world = playScreen.mWorld, control = control,zgame =  zgame,mstage =  playScreen.stage))
         mPlayer.body?.userData = "car"
         playScreen.stage.addActor(mPlayer)
 

@@ -58,7 +58,7 @@ class PlayScreen internal constructor(private val zgame: ZGame) : Screen {
     private var wheelVecArray: ArrayList<Vector2> = arrayListOf()
     private var tempWheelVecArray: ArrayList<Vector2> = arrayListOf()
     var z = 10
-    private val userControl: UserControl
+    val userControl: UserControl
 
     override fun show() {}
 

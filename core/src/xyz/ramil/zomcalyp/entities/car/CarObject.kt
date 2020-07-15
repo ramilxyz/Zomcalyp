@@ -23,7 +23,7 @@ class CarObject(val car: Car) : Actor() {
     private var mTurnDirection = TURN_DIRECTION_NONE
     private var mCurrentWheelAngle = 0f
     private var mCurrentMaxSpeed = 0f
-    private var sprite = Sprite(car.zgame.assetManager.get("cars/y0.png", Texture::class.java))
+    private var sprite = Sprite(car.texture)
     val body: Body?
     private val mId: Int
     val mstage: Stage
