@@ -14,7 +14,7 @@ import xyz.ramil.zomcalyp.tools.ShapeFactory
 import xyz.ramil.zomcalyp.tools.Utils
 import java.util.*
 
-class Wheel(position: Vector2, size: Vector2, world: World, id: Int, private val mCar: Car, val isPowered: Boolean, private val control: ArrayList<Actor>) : Actor() {
+class Wheel(position: Vector2, size: Vector2, world: World, id: Int, private val mCarObject: CarObject, val isPowered: Boolean, private val control: ArrayList<Actor>) : Actor() {
     var effect: ParticleEffect
 
     val body: Body?
@@ -64,7 +64,7 @@ class Wheel(position: Vector2, size: Vector2, world: World, id: Int, private val
     }
 
     fun setAngle(angle: Float) {
-        mCar.body?.angle?.plus(angle * DEGTORAD)?.let { body?.setTransform(body.position, it) }
+        mCarObject.body?.angle?.plus(angle * DEGTORAD)?.let { body?.setTransform(body.position, it) }
     }
 
     fun setDrift(drift: Float) {

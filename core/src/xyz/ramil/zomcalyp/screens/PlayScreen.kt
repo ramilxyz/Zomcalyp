@@ -22,7 +22,7 @@ import xyz.ramil.zomcalyp.ZGame
 import xyz.ramil.zomcalyp.entities.Blood
 import xyz.ramil.zomcalyp.entities.StaticWheel
 import xyz.ramil.zomcalyp.entities.actor.ActorObject
-import xyz.ramil.zomcalyp.entities.car.Car
+import xyz.ramil.zomcalyp.entities.car.CarObject
 import xyz.ramil.zomcalyp.tools.MapLoader
 import xyz.ramil.zomcalyp.ui.MenuTable
 import xyz.ramil.zomcalyp.ui.UserControl
@@ -65,18 +65,18 @@ class PlayScreen internal constructor(private val zgame: ZGame) : Screen {
     //todo for pc
     private fun handleInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            userControl.mPlayer.setDriveDirection(Car.Companion.DRIVE_DIRECTION_FORWARD)
+            userControl.mPlayer.setDriveDirection(CarObject.Companion.DRIVE_DIRECTION_FORWARD)
         } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            userControl.mPlayer.setDriveDirection(Car.Companion.DRIVE_DIRECTION_BACKWARD)
+            userControl.mPlayer.setDriveDirection(CarObject.Companion.DRIVE_DIRECTION_BACKWARD)
         } else {
-            userControl.mPlayer.setDriveDirection(Car.Companion.DRIVE_DIRECTION_NONE)
+            userControl.mPlayer.setDriveDirection(CarObject.Companion.DRIVE_DIRECTION_NONE)
         }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            userControl.mPlayer.setTurnDirection(Car.Companion.TURN_DIRECTION_LEFT)
+            userControl.mPlayer.setTurnDirection(CarObject.Companion.TURN_DIRECTION_LEFT)
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            userControl.mPlayer.setTurnDirection(Car.Companion.TURN_DIRECTION_RIGHT)
+            userControl.mPlayer.setTurnDirection(CarObject.Companion.TURN_DIRECTION_RIGHT)
         } else {
-            userControl.mPlayer.setTurnDirection(Car.Companion.TURN_DIRECTION_NONE)
+            userControl.mPlayer.setTurnDirection(CarObject.Companion.TURN_DIRECTION_NONE)
         }
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             Gdx.app.exit()

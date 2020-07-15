@@ -1,7 +1,5 @@
 package xyz.ramil.zomcalyp.ui
 
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.InputEvent
@@ -9,12 +7,13 @@ import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import xyz.ramil.zomcalyp.ZGame
 import xyz.ramil.zomcalyp.entities.car.Car
+import xyz.ramil.zomcalyp.entities.car.CarObject
 import xyz.ramil.zomcalyp.screens.PlayScreen
 
 class UserControl internal constructor(var zgame: ZGame, val playScreen: PlayScreen) {
 
     val gas: Actor
-    var mPlayer: Car
+    var mPlayer: CarObject
     val brake: Actor
     val right: Actor
     val left: Actor
@@ -63,7 +62,7 @@ class UserControl internal constructor(var zgame: ZGame, val playScreen: PlayScr
         zgame.stage?.addActor(left)
         zgame.stage?.addActor(right)
 
-        mPlayer = Car(35.0f, 0.8f, 80f, playScreen.mMapLoader, Car.DRIVE_4WD, playScreen.mWorld, control, zgame, playScreen.stage)
+        mPlayer = CarObject(Car(35.0f, 0.8f, 80f, playScreen.mMapLoader, CarObject.DRIVE_4WD, playScreen.mWorld, control, zgame, playScreen.stage))
         mPlayer.body?.userData = "car"
         playScreen.stage.addActor(mPlayer)
 
@@ -75,12 +74,12 @@ class UserControl internal constructor(var zgame: ZGame, val playScreen: PlayScr
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
                 super.touchUp(event, x, y, pointer, button)
                 gas.setColor(gas.color.r, gas.color.g, gas.color.b, 0.7f)
-                mPlayer.setDriveDirection(Car.Companion.DRIVE_DIRECTION_NONE)
+                mPlayer.setDriveDirection(CarObject.Companion.DRIVE_DIRECTION_NONE)
             }
 
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 gas.setColor(gas.color.r, gas.color.g, gas.color.b, 0.5f)
-                mPlayer.setDriveDirection(Car.Companion.DRIVE_DIRECTION_FORWARD)
+                mPlayer.setDriveDirection(CarObject.Companion.DRIVE_DIRECTION_FORWARD)
                 return true
             }
         })
@@ -88,12 +87,12 @@ class UserControl internal constructor(var zgame: ZGame, val playScreen: PlayScr
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
                 super.touchUp(event, x, y, pointer, button)
                 brake.setColor(brake.color.r, brake.color.g, brake.color.b, 0.7f)
-                mPlayer.setDriveDirection(Car.Companion.DRIVE_DIRECTION_NONE)
+                mPlayer.setDriveDirection(CarObject.Companion.DRIVE_DIRECTION_NONE)
             }
 
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 brake.setColor(brake.color.r, brake.color.g, brake.color.b, 0.5f)
-                mPlayer.setDriveDirection(Car.Companion.DRIVE_DIRECTION_BACKWARD)
+                mPlayer.setDriveDirection(CarObject.Companion.DRIVE_DIRECTION_BACKWARD)
                 return true
             }
         })
@@ -101,12 +100,12 @@ class UserControl internal constructor(var zgame: ZGame, val playScreen: PlayScr
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
                 super.touchUp(event, x, y, pointer, button)
                 left.setColor(left.color.r, left.color.g, left.color.b, 0.7f)
-                mPlayer.setTurnDirection(Car.Companion.TURN_DIRECTION_NONE)
+                mPlayer.setTurnDirection(CarObject.Companion.TURN_DIRECTION_NONE)
             }
 
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 left.setColor(left.color.r, left.color.g, left.color.b, 0.5f)
-                mPlayer.setTurnDirection(Car.Companion.TURN_DIRECTION_LEFT)
+                mPlayer.setTurnDirection(CarObject.Companion.TURN_DIRECTION_LEFT)
                 return true
             }
         })
@@ -114,12 +113,12 @@ class UserControl internal constructor(var zgame: ZGame, val playScreen: PlayScr
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
                 super.touchUp(event, x, y, pointer, button)
                 right.setColor(left.color.r, right.color.g, right.color.b, 0.7f)
-                mPlayer.setTurnDirection(Car.Companion.TURN_DIRECTION_NONE)
+                mPlayer.setTurnDirection(CarObject.Companion.TURN_DIRECTION_NONE)
             }
 
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 right.setColor(right.color.r, right.color.g, right.color.b, 0.5f)
-                mPlayer.setTurnDirection(Car.Companion.TURN_DIRECTION_RIGHT)
+                mPlayer.setTurnDirection(CarObject.Companion.TURN_DIRECTION_RIGHT)
                 return true
             }
         })

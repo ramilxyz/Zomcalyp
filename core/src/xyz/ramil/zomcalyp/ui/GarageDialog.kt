@@ -12,9 +12,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.*
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener
 import com.badlogic.gdx.utils.Align
 import xyz.ramil.zomcalyp.ZGame
+import xyz.ramil.zomcalyp.screens.PlayScreen
 
 
-class GarageDialog internal constructor(var zgame: ZGame) : Dialog("", zgame.skin) {
+class GarageDialog internal constructor(var zgame: ZGame, val playScreen: PlayScreen) : Dialog("", zgame.skin) {
 
     val buttonleft: Actor
     val buttonRight: Actor
