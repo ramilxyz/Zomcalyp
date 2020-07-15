@@ -26,7 +26,8 @@ class MenuTable internal constructor(private val zgame: ZGame, private val playS
     private val garageButton: Button
     private val newGameButton: Button
     private val highScoreButton: Button
-    private val sound: Actor
+    private val soundOn: Actor
+    private val soundOff: Actor
     private val camera: Actor
     val menu: Actor
 
@@ -49,12 +50,20 @@ class MenuTable internal constructor(private val zgame: ZGame, private val playS
         val cameraTexture = zgame.assetManager.get("ui/camera.png", Texture::class.java)
 
         buttonExit = TextButton("Exit", zgame.skin)
+        soundOn = Image(soundOnTexture)
+        soundOff = Image(soundOffTexture)
+        if(zgame.dataBase.isSound) {
+            soundOff.isVisible = false
+        } else {
+            soundOn.isVisible = false
+        }
+        soundOn.setSize(40f, 40f)
+        soundOff.setSize(40f, 40f)
 
-        sound = Image(soundOnTexture)
-        camera = Image(cameraTexture)
+
         this.setSize(143f, 480f)
 
-        sound.setSize(40f, 40f)
+        camera = Image(cameraTexture)
         camera.setSize(40f, 40f)
 
         this.name = "menu_frame"
@@ -94,8 +103,11 @@ class MenuTable internal constructor(private val zgame: ZGame, private val playS
         highScoreButton.setPosition(20f, 260f)
         this.addActor(highScoreButton)
 
-        sound.setPosition(80f, 410f)
-        this.addActor(sound)
+        soundOn.setPosition(80f, 410f)
+        this.addActor(soundOn)
+
+        soundOff.setPosition(80f, 410f)
+        this.addActor(soundOff)
 
         camera.setPosition(20f, 410f)
         this.addActor(camera)
@@ -190,14 +202,50 @@ class MenuTable internal constructor(private val zgame: ZGame, private val playS
             }
         })
 
-        sound.addListener(object : InputListener() {
+        soundOn.addListener(object : InputListener() {
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
                 super.touchUp(event, x, y, pointer, button)
-                sound.setColor(sound.color.r, sound.color.g, sound.color.b, 1f)
+                soundOn.setColor(soundOn.color.r, soundOn.color.g, soundOn.color.b, 1f)
+
+                zgame.dataBase.setIsSound(false);
+
+                if(zgame.dataBase.isSound) {
+                    soundOff.isVisible = false
+                    soundOn.isVisible = true
+                } else {
+                    soundOff.isVisible = true
+                    soundOn.isVisible = false
+                }
+
+
+
             }
 
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                sound.setColor(sound.color.r, sound.color.g, sound.color.b, 0.5f)
+                soundOn.setColor(soundOn.color.r, soundOn.color.g, soundOn.color.b, 0.5f)
+                return true
+            }
+        })
+
+        soundOff.addListener(object : InputListener() {
+            override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
+                super.touchUp(event, x, y, pointer, button)
+                soundOff.setColor(soundOff.color.r, soundOff.color.g, soundOff.color.b, 1f)
+
+                zgame.dataBase.setIsSound(true);
+
+                if(zgame.dataBase.isSound) {
+                    soundOff.isVisible = false
+                    soundOn.isVisible = true
+                } else {
+                    soundOff.isVisible = true
+                    soundOn.isVisible = false
+                }
+
+            }
+
+            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+                soundOff.setColor(soundOff.color.r, soundOff.color.g, soundOff.color.b, 0.5f)
                 return true
             }
         })

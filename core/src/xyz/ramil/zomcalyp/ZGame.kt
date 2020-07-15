@@ -2,6 +2,7 @@ package xyz.ramil.zomcalyp
 
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Preferences
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.BitmapFont
@@ -22,6 +23,10 @@ class ZGame : Game() {
 
     var pause = false
 
+    lateinit var dataBase : DataBase
+
+
+
     val purchaseManagerisInitialized: Boolean get() = ::purchaseManager.isInitialized
 
     var mBatch: SpriteBatch? = null
@@ -36,6 +41,7 @@ class ZGame : Game() {
     lateinit var dialog: Dialog
 
     override fun create() {
+        dataBase = DataBase()
 
         skin = Skin()
         atlas = TextureAtlas(Gdx.files.internal("skin/uiskin.atlas"))

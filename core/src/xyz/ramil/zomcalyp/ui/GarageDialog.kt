@@ -139,7 +139,6 @@ class GarageDialog internal constructor(var zgame: ZGame, val playScreen: PlaySc
                 actor.setOrigin(actor.width/2, actor.height/2)
                 val touchDegree = Vector2(x, y).sub(Vector2(actor.getOriginX(), actor.getOriginY())).angle()
                 actor.rotateBy (touchDegree - Vector2(x, y).angle())
-                Gdx.app.log("X"+actor.originX, "Y"+actor.originY)
             }
         })
     }
