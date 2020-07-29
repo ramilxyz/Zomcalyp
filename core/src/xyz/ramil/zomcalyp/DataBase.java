@@ -11,8 +11,8 @@ import xyz.ramil.zomcalyp.entities.car.Car;
 import xyz.ramil.zomcalyp.entities.car.CarSetting;
 
 public class DataBase {
-    static Preferences preferences = Gdx.app.getPreferences(Base64Coder.encodeString("xyz.ramil.zomcalyp"));
-    String setting_key = Base64Coder.encodeString("sound_key");
+    static Preferences preferences = Gdx.app.getPreferences("xyz.ramil.zomcalyp");
+    String setting_key = Base64Coder.encodeString("settings");
     ArrayList<String> list = new ArrayList<>();
     ArrayList<CarSetting> carSettings = new ArrayList<>();
 
@@ -39,16 +39,19 @@ public class DataBase {
 
 
     private void flush(int numb, String str) {
-        list.set(numb, str);
-        StringBuilder s = new StringBuilder();
-        for(String item : list) {
-            if(s.length() == 0)
-                s.append(item); else
-            s.append(" ").append(item);
+        if(!list.isEmpty()) {
+            list.set(numb, str);
+            StringBuilder s = new StringBuilder();
+            for (String item : list) {
+                if (s.length() == 0)
+                    s.append(item);
+                else
+                    s.append(" ").append(item);
+            }
+            Gdx.app.log("-----------", String.valueOf(s));
+            preferences.putString(setting_key, Base64Coder.encodeString(String.valueOf(s)));
+            preferences.flush();
         }
-        Gdx.app.log("-----------", String.valueOf(s));
-        preferences.putString(setting_key, Base64Coder.encodeString(String.valueOf(s)));
-        preferences.flush();
     }
 
     /*
