@@ -3,6 +3,7 @@ package xyz.ramil.zomcalyp.screens
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.Screen
+import com.badlogic.gdx.audio.Music
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
@@ -35,6 +36,8 @@ class PlayScreen internal constructor(private val zgame: ZGame) : Screen {
     val mCamera: OrthographicCamera
     private val mViewport: Viewport
     val stage: Stage
+
+    val music: Music
 
     val mWorld: World
 
@@ -382,5 +385,8 @@ class PlayScreen internal constructor(private val zgame: ZGame) : Screen {
             stage.addActor(a)
             actorList.add(a)
         }
+        music = Gdx.audio.newMusic(Gdx.files.internal("sound/theme.mp3"))
+        music.isLooping = true
+      //  music.play()
     }
 }

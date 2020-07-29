@@ -1,3 +1,5 @@
+apply plugin: 'com.google.gms.google-services'
+
 android {
     buildToolsVersion "29.0.3"
     compileSdkVersion 29
@@ -33,6 +35,7 @@ android {
 
 dependencies {
     implementation "com.badlogicgames.gdxpay:gdx-pay-android-googlebilling:$gdxPayVersion"
+    implementation 'com.google.firebase:firebase-analytics:17.4.4'
 }
 
 

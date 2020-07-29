@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.ui.*
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener
 import com.badlogic.gdx.utils.Align
+import xyz.ramil.zomcalyp.DataBase
 import xyz.ramil.zomcalyp.ZGame
 import xyz.ramil.zomcalyp.entities.car.Car
 import xyz.ramil.zomcalyp.entities.car.CarObject
@@ -39,6 +40,8 @@ class GarageDialog internal constructor(var zgame: ZGame, val playScreen: PlaySc
 
     val actionScaleOn:Action
     val actionScaleOff:Action
+
+    val dataBase = DataBase()
 
 
 
@@ -195,6 +198,7 @@ class GarageDialog internal constructor(var zgame: ZGame, val playScreen: PlaySc
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
                 super.touchUp(event, x, y, pointer, button)
                 buttonTuning.setColor(buttonTuning.color.r, buttonTuning.color.g, buttonTuning.color.b, 0.7f)
+                Gdx.app.log("GARAGE", dataBase.getCarSetting(1).additionallyString)
             }
 
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {

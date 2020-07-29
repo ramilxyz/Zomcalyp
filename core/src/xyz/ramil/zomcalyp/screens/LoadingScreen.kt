@@ -154,6 +154,11 @@ class LoadingScreen internal constructor(private val zgame: ZGame) : Screen {
          *  font
          */
         zgame.assetManager.load("font/font.fnt", BitmapFont::class.java)
+        
+
+
+
+
 
     }
 }
