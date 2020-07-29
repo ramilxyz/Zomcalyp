@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "769034346662",
+    "firebase_url": "https://zomcalyp.firebaseio.com",
+    "project_id": "zomcalyp",
+    "storage_bucket": "zomcalyp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769034346662:android:8f6502438e61c57e5b5467",
+        "android_client_info": {
+          "package_name": "xyz.ramil.zomcalyp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769034346662-m32l6jcd9iaj13ir8mit2bviq4d2bl2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF5rGdKqkHJPg9wM1k55K9_YJy3FU_CI8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769034346662-m32l6jcd9iaj13ir8mit2bviq4d2bl2f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-7417642993084234~2217598175"
+    }
+  ],
+  "configuration_version": "1"
+}

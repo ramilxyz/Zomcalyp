@@ -5,6 +5,7 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.utils.Base64Coder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import xyz.ramil.zomcalyp.entities.car.Car;
@@ -30,10 +31,8 @@ public class DataBase {
 
           String str =  Base64Coder.decodeString(preferences.getString(setting_key));
 
-          Gdx.app.log("-----------", str);
-            for(String item : str.split(" ")) {
-                list.add(item);
-            }
+          Gdx.app.log("DATABASE::Settings", str);
+            list.addAll(Arrays.asList(str.split(" ")));
         }
     }
 
@@ -48,7 +47,7 @@ public class DataBase {
                 else
                     s.append(" ").append(item);
             }
-            Gdx.app.log("-----------", String.valueOf(s));
+            Gdx.app.log("DATABASE::Flush", String.valueOf(s));
             preferences.putString(setting_key, Base64Coder.encodeString(String.valueOf(s)));
             preferences.flush();
         }
@@ -96,16 +95,10 @@ public class DataBase {
 
 
     public CarSetting getCarSetting(int id) {
-        ArrayList<String> carSettingListItems = new ArrayList<>();
-        for(String item : list.get(2).split("&")) {
-            carSettingListItems.add(item);
-        }
-        ArrayList<String> settingsListItem = new ArrayList<>();
-        for(String item : carSettingListItems.get(id).split("#")) {
-            settingsListItem.add(item);
-        }
+        ArrayList<String> carSettingListItems = new ArrayList<>(Arrays.asList(list.get(2).split("&")));
+        ArrayList<String> settingsListItem = new ArrayList<>(Arrays.asList(carSettingListItems.get(id).split("#")));
 
-        CarSetting carSetting = new CarSetting(
+        return new CarSetting(
                 Integer.parseInt(settingsListItem.get(0)),
                 Integer.parseInt(settingsListItem.get(1)),
                 Integer.parseInt(settingsListItem.get(2)),
@@ -118,8 +111,6 @@ public class DataBase {
                 Integer.parseInt(settingsListItem.get(9)),
                 settingsListItem.get(10)
         );
-        
-        return carSetting;
     }
 
 //    val id: Int,
