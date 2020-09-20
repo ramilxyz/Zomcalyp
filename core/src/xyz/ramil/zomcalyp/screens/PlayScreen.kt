@@ -37,7 +37,7 @@ class PlayScreen internal constructor(private val zgame: ZGame) : Screen {
     private val mViewport: Viewport
     val stage: Stage
 
-    val music: Music
+
 
     val mWorld: World
 
@@ -385,8 +385,6 @@ class PlayScreen internal constructor(private val zgame: ZGame) : Screen {
             stage.addActor(a)
             actorList.add(a)
         }
-        music = Gdx.audio.newMusic(Gdx.files.internal("sound/theme.mp3"))
-        music.isLooping = true
-      //  music.play()
+
     }
 }
